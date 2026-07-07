@@ -41,8 +41,8 @@ export function SplashScreen() {
             />
             
             <motion.h2
-              initial={{ opacity: 0, tracking: "0em" }}
-              animate={{ opacity: 1, tracking: "0.3em" }}
+              initial={{ opacity: 0, letterSpacing: "0em" }}
+              animate={{ opacity: 1, letterSpacing: "0.3em" }}
               transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
               className="font-display text-white/80 text-sm md:text-lg uppercase mb-12 font-semibold"
             >
