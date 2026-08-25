@@ -37,8 +37,7 @@ export default function DetailedAboutPage() {
         {/* Header Hero Section */}
         <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
           {/* Grid Background */}
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-overlay"></div>
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+          <div className="absolute inset-0 telemetry-grid opacity-20"></div>
           
           <motion.div 
             className="text-center z-10 px-4"
@@ -70,48 +69,45 @@ export default function DetailedAboutPage() {
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 leading-none">
-                More than <br/><span className="text-[#FF3E00]">Engineers</span>
+                More than <br/><span className="text-racing-red">Engineers</span>
               </h2>
-              <div className="space-y-6 text-white/60 font-light text-lg leading-relaxed">
+              <div className="space-y-6 text-white/70 font-mono text-sm md:text-base leading-relaxed">
                 <p>
                   Team VeerRacerss is a high-performance collective forged at the intersection of ambition and precision. We don't just build cars; we engineer platforms for innovation to test the boundaries of electric mobility.
                 </p>
                 <p>
-                  Every component is a testament to student-led design. From topology optimization to advanced powertrain control algorithms, we take theoretical challenges and turn them into visceral, track-dominating reality.
+                  Every component is a testament to student-led design. We are affiliated with SAE India, participating and representing VSSUT in SUPRA SAE, Formula Bharat, FFS INDIA, and Formula Imperial. From topology optimization to advanced powertrain control algorithms, we turn theoretical challenges into visceral, track-dominating reality.
                 </p>
               </div>
               
               <div className="grid grid-cols-2 gap-8 mt-12">
-                <div className="border-l border-[#FF3E00] pl-6">
-                  <div className="text-4xl font-black text-white">40+</div>
-                  <div className="text-[10px] uppercase tracking-widest text-[#FF3E00] mt-2">Team Members</div>
+                <div className="border-l-4 border-racing-red pl-6">
+                  <div className="text-4xl font-black text-white font-mono">55</div>
+                  <div className="text-[10px] uppercase tracking-widest text-racing-red mt-2 font-bold">Team Members</div>
                 </div>
-                <div className="border-l border-[#FF3E00] pl-6">
-                  <div className="text-4xl font-black text-white">03</div>
-                  <div className="text-[10px] uppercase tracking-widest text-[#FF3E00] mt-2">National Podiums</div>
+                <div className="border-l-4 border-racing-red pl-6">
+                  <div className="text-4xl font-black text-white font-mono">03</div>
+                  <div className="text-[10px] uppercase tracking-widest text-racing-red mt-2 font-bold">National Podiums</div>
                 </div>
               </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="relative aspect-square"
             >
-              <div className="absolute inset-0 border border-white/10 rounded-full animate-[spin_60s_linear_infinite] border-dashed"></div>
-              <div className="absolute inset-8 border border-white/5 rounded-full animate-[spin_40s_linear_infinite_reverse]"></div>
-              
-              <div className="absolute inset-0 flex items-center justify-center p-12">
-                <div className="bg-[#111] border border-white/10 p-8 w-full h-full relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-[#FF3E00]/5 scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-500 ease-out"></div>
-                  <Target className="w-12 h-12 text-[#FF3E00] mb-8" />
-                  <h3 className="text-2xl font-bold uppercase tracking-wider mb-4">Our Mission</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
+              <div className="absolute inset-0 flex items-center justify-center p-4 md:p-12">
+                <div className="bg-[#0d0d0d] border border-white/15 p-8 w-full h-full relative overflow-hidden group shadow-[8px_8px_0px_rgba(225,6,0,0.15)]">
+                  <div className="absolute inset-0 telemetry-grid opacity-10 pointer-events-none"></div>
+                  <Target className="w-12 h-12 text-racing-red mb-8" />
+                  <h3 className="text-2xl font-bold uppercase tracking-wider mb-4 font-display">Our Mission</h3>
+                  <p className="text-white/60 text-sm leading-relaxed font-mono">
                     To pioneer robust electric racing solutions that accelerate the transition to sustainable high-performance vehicles, while forging the next generation of top-tier engineering talent.
                   </p>
                 </div>
@@ -145,29 +141,29 @@ export default function DetailedAboutPage() {
             <div className="w-full flex flex-col gap-24">
               {Object.keys(momentsByYear).sort((a,b) => Number(b) - Number(a)).map(year => (
                 <div key={year} className="w-full">
-                  <h3 className="text-3xl md:text-5xl font-black text-[#FF3E00] font-mono tracking-tighter mb-8 border-b border-white/10 pb-4">
-                    {year}
+                  <h3 className="text-4xl md:text-6xl font-black text-racing-red font-mono tracking-tighter mb-8 border-b-2 border-white/15 pb-4 uppercase">
+                    [ {year} ]
                   </h3>
                   <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full">
                     {momentsByYear[year].map(m => (
                        <motion.div 
                          key={m.id}
-                         initial={{ opacity: 0, y: 20 }}
+                         initial={{ opacity: 0, y: 10 }}
                          whileInView={{ opacity: 1, y: 0 }}
                          viewport={{ once: true }}
                          onClick={() => setSelectedImage(m)}
-                         className="break-inside-avoid rounded-2xl overflow-hidden glass-panel border border-white/10 group cursor-zoom-in hover:shadow-[0_0_30px_rgba(255,30,0,0.15)] transition-all duration-500"
+                         className="break-inside-avoid overflow-hidden glass-panel group cursor-zoom-in hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_rgba(225,6,0,1)] transition-all duration-300 ease-out border border-white/20"
                        >
                          <div className="overflow-hidden relative bg-white/5">
                            <img 
                               src={m.image_url} 
                               alt={m.label} 
                               loading="lazy" 
-                              className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-700" 
+                              className="w-full h-auto object-cover grayscale-[30%] contrast-125 group-hover:grayscale-0 transition-all duration-500" 
                            />
                          </div>
-                         <div className="p-6 bg-black/60 backdrop-blur-md">
-                           <p className="text-white/90 text-sm md:text-base leading-relaxed font-sans">{m.label}</p>
+                         <div className="p-6 bg-[#0d0d0d] border-t border-white/10">
+                           <p className="text-white/80 text-sm md:text-base leading-relaxed font-mono uppercase tracking-wide">{m.label}</p>
                          </div>
                        </motion.div>
                     ))}
@@ -193,27 +189,27 @@ export default function DetailedAboutPage() {
           >
             <motion.div
               layoutId={selectedImage.id}
-              className="relative max-w-7xl w-full max-h-[90vh] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] bg-[#111]"
+              className="relative max-w-7xl w-full max-h-[90vh] overflow-hidden border border-white/20 bg-[#0d0d0d] shadow-[12px_12px_0px_rgba(225,6,0,1)]"
               onClick={(e) => e.stopPropagation()}
             >
               <img 
                 src={selectedImage.image_url} 
                 alt={selectedImage.label} 
                 loading="lazy"
-                className="w-full h-[60vh] md:h-[75vh] object-contain"
+                className="w-full h-[60vh] md:h-[75vh] object-contain bg-black/50"
               />
               <button 
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-6 right-6 bg-black/50 hover:bg-[#FF3E00] text-white p-3 rounded-full backdrop-blur-md transition-colors border border-white/20"
+                className="absolute top-6 right-6 bg-black hover:bg-racing-red text-white p-3 border border-white/20 transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
               
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-6 md:p-12">
-                <div className="flex gap-4 items-center mb-3">
-                  <span className="text-[#FF3E00] font-mono text-xl">{selectedImage.year}</span>
+              <div className="absolute bottom-0 left-0 right-0 bg-[#0d0d0d] border-t border-white/20 p-6 md:p-8">
+                <div className="flex gap-4 items-center mb-2">
+                  <span className="text-racing-red font-mono text-xl font-bold">[{selectedImage.year}]</span>
                 </div>
-                <p className="text-white max-w-3xl text-base md:text-xl leading-relaxed drop-shadow-md">{selectedImage.label}</p>
+                <p className="text-white/90 max-w-3xl text-sm md:text-lg leading-relaxed font-mono uppercase tracking-wide">{selectedImage.label}</p>
               </div>
             </motion.div>
           </motion.div>

@@ -1,37 +1,63 @@
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+
+const SPONSORS = [
+  "BOSCH", "DANA", "DENSO", "EDAG", 
+  "Bibus", "motorsport.com", "SKF", "vector"
+];
+
 export function Partners() {
-  const SPONSORS = [
-    "SPONSOR A", "SPONSOR B", "SPONSOR C", "SPONSOR D", "SPONSOR E",
-    "SPONSOR F", "SPONSOR G", "SPONSOR H"
-  ];
-
   return (
-    <section className="py-24 relative z-10" id="partners">
-      <div className="w-full text-center">
-        <p className="font-sans text-xs text-text-muted tracking-[0.4em] mb-12 uppercase px-4 font-bold">
-          Empowered by Global Leaders
-        </p>
+    <section id="partners" className="py-24 md:py-32 bg-[#0A0A0A] relative z-10 border-t border-white/5 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-16 flex flex-col items-center">
         
-        {/* Marquee Container */}
-        <div className="relative overflow-hidden w-full flex bg-[#090909]/80 border-y border-white/5 py-12 mask-image-fade backdrop-blur-md">
-          
-          {/* Gradient Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none"></div>
-
-          <div className="flex flex-nowrap w-max animate-marquee gap-8 md:gap-16 px-8 items-center hover:[animation-play-state:paused]">
-            {[...SPONSORS, ...SPONSORS].map((sponsor, idx) => (
-              <div 
-                key={idx} 
-                className="h-24 w-56 glass-panel rounded-2xl flex items-center justify-center text-center opacity-70 hover:opacity-100 hover:border-racing-red transition-all duration-500 cursor-pointer shadow-[0_0_0_rgba(255,30,0,0)] hover:shadow-[0_0_30px_rgba(255,30,0,0.15)] hover:-translate-y-2 transform group relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="text-[14px] font-black uppercase tracking-[0.2em] group-hover:text-racing-red transition-colors text-white/50 relative z-10 font-display">
-                  {sponsor}
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="font-display font-black text-4xl md:text-5xl uppercase text-white tracking-tight">
+              OUR PARTNERS
+            </h2>
+          </motion.div>
         </div>
+
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-16">
+          {SPONSORS.map((sponsor, idx) => (
+            <motion.div
+              key={sponsor}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+              className="h-20 flex items-center justify-center group cursor-pointer grayscale hover:grayscale-0 opacity-50 hover:opacity-100 transition-all duration-500"
+            >
+              {/* Fallback to text if we don't have the actual SVG logos, but stylized to look like logos */}
+              <span className="font-display font-bold text-2xl md:text-3xl text-white tracking-wider">
+                {sponsor}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <Link 
+            href="/contact" 
+            className="bg-transparent border border-white text-white px-10 py-4 font-sans font-bold text-[12px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-colors duration-300 rounded-none"
+          >
+            BECOME A PARTNER
+          </Link>
+        </motion.div>
+
       </div>
     </section>
   );

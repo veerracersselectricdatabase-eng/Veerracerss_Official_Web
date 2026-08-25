@@ -18,62 +18,37 @@ const DOMAIN_DESCRIPTIONS: Record<string, string> = {
   "Brakes": "Engineering precision deceleration and control.",
 };
 
-function MemberCard3D({ member }: { member: any }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const xPct = x / rect.width - 0.5;
-    const yPct = y / rect.height - 0.5;
-    ref.current.style.transform = `perspective(1000px) rotateY(${xPct * 15}deg) rotateX(${-yPct * 15}deg) scale3d(1.05, 1.05, 1.05)`;
-  };
-
-  const handlePointerLeave = () => {
-    if (!ref.current) return;
-    ref.current.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)`;
-  };
-
+function MemberCard({ member }: { member: any }) {
   return (
-    <div 
-      ref={ref}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      className="group relative transition-transform duration-300 ease-out will-change-transform w-full"
-      style={{ transformStyle: 'preserve-3d' }}
-    >
-      <div className="absolute -inset-1 bg-gradient-to-r from-[#FF3E00] to-[#FF3E00]/50 rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-500 ease-out z-0"></div>
-      <div className="bg-[#111] border border-white/10 rounded-xl overflow-hidden relative z-10 flex flex-col items-center p-6 gap-4">
-        
-        {/* Animated Racing Line Background */}
-        <div className="absolute top-0 right-0 bottom-0 w-32 bg-white/[0.02] skew-x-[-20deg] translate-x-[150%] group-hover:translate-x-[-150%] transition-transform duration-700 ease-in-out pointer-events-none"></div>
+    <div className="group relative w-full border border-white/20 bg-[#0d0d0d] p-6 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[8px_8px_0px_rgba(225,6,0,1)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+      <div className="absolute inset-0 telemetry-grid opacity-10 pointer-events-none"></div>
+      
+      <div className="relative z-10 flex flex-col items-center gap-4">
+        {/* Snappy Mechanical Accent */}
+        <div className="absolute top-0 right-0 bottom-0 w-8 bg-racing-red translate-x-[200%] group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"></div>
 
-        <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-[#FF3E00] transition-colors duration-300 relative shadow-lg">
-          <div className="absolute inset-0 bg-[#FF3E00]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mix-blend-overlay z-10 pointer-events-none"></div>
+        <div className="w-32 h-32 overflow-hidden border-2 border-white/20 group-hover:border-racing-red transition-colors duration-300 relative bg-black">
           <img 
-            src={member.image} 
+            src={member.image_url} 
             alt={member.name} 
-            className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"
+            className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300"
           />
         </div>
 
-        <div className="text-center z-20">
-          <h3 className="text-xl font-bold uppercase tracking-wider text-white group-hover:text-[#FF3E00] transition-colors">{member.name}</h3>
-          <p className="text-[10px] text-white/50 uppercase tracking-widest mt-1 font-mono">{member.role}</p>
+        <div className="text-center z-20 bg-[#0d0d0d] px-4 py-2 border border-white/10 mt-2 group-hover:border-racing-red transition-colors">
+          <h3 className="text-xl font-bold uppercase tracking-wider text-white">{member.name}</h3>
+          <p className="text-[10px] text-racing-red uppercase tracking-widest mt-1 font-mono font-bold">{member.role}</p>
         </div>
 
         {/* Social Links (Revealed on Hover) */}
-        <div className="flex gap-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out mt-2 z-20">
-          <a href={member.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#FF3E00] border border-white/10 hover:border-[#FF3E00] flex items-center justify-center text-white/70 hover:text-white transition-all">
+        <div className="flex gap-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] mt-2 z-20">
+          <a href={member.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 bg-[#111] hover:bg-racing-red border border-white/20 hover:border-racing-red flex items-center justify-center text-white/70 hover:text-white transition-all">
             <Linkedin className="w-4 h-4" />
           </a>
-          <a href={member.instagram} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#FF3E00] border border-white/10 hover:border-[#FF3E00] flex items-center justify-center text-white/70 hover:text-white transition-all">
+          <a href={member.instagram} target="_blank" rel="noreferrer" className="w-10 h-10 bg-[#111] hover:bg-racing-red border border-white/20 hover:border-racing-red flex items-center justify-center text-white/70 hover:text-white transition-all">
              <Instagram className="w-4 h-4" />
           </a>
         </div>
-
       </div>
     </div>
   );
@@ -118,34 +93,29 @@ export default function MembersPage() {
       <main className="relative block">
         {/* Header Hero Section */}
         <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
-          {/* Subtle noise and circuit texture */}
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#050505_100%)] opacity-80"></div>
+          {/* Telemetry texture */}
+          <div className="absolute inset-0 telemetry-grid opacity-20 pointer-events-none"></div>
 
           <motion.div 
-            className="text-center z-10 px-4"
+            className="text-center z-10 px-4 flex flex-col items-center"
             style={{ opacity, y }}
           >
             <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter italic text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20 pr-8 pb-4 relative"
+              initial={{ opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
+              animate={{ opacity: 1, clipPath: 'inset(0% 0 0 0)' }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-white pr-8 pb-4 relative"
+              style={{ textShadow: '6px 6px 0px rgba(225, 6, 0, 1)' }}
             >
               The Crew
-              <motion.div 
-                className="absolute inset-0 bg-white/10 blur-[80px] rounded-full mix-blend-screen -z-10 pointer-events-none" 
-                animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.5, 0.2] }} 
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} 
-              />
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="text-[#FF3E00] font-mono text-sm md:text-base tracking-[0.3em] uppercase mt-6"
+              transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="text-racing-red font-mono text-sm md:text-base tracking-[0.3em] uppercase mt-6 border border-white/20 px-6 py-2 bg-[#0d0d0d] inline-block shadow-[4px_4px_0px_rgba(255,255,255,0.1)]"
             >
-              Minds Behind The Machines
+              [ MINDS BEHIND THE MACHINES ]
             </motion.p>
           </motion.div>
         </section>
@@ -176,7 +146,7 @@ export default function MembersPage() {
                     {domain.name}
                   </h2>
                 </div>
-                <p className="text-[10px] uppercase tracking-widest text-[#FF3E00] md:text-right max-w-sm">
+                <p className="text-[10px] uppercase tracking-widest text-racing-red md:text-right max-w-sm font-mono font-bold">
                   {domain.description}
                 </p>
               </motion.div>
@@ -185,12 +155,12 @@ export default function MembersPage() {
                 {domain.members.map((member, mIndex) => (
                   <motion.div
                     key={member.name}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: mIndex * 0.1 }}
+                    transition={{ duration: 0.4, delay: mIndex * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <MemberCard3D member={member} />
+                    <MemberCard member={member} />
                   </motion.div>
                 ))}
               </div>
