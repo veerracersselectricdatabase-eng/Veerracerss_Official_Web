@@ -27,7 +27,14 @@ const NEWS_ITEMS = [
 export function News() {
   return (
     <section className="py-24 md:py-32 bg-[#111111] relative z-10 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+      {/* Background Elements to fill empty space */}
+      <div className="absolute inset-0 telemetry-grid opacity-[0.03] pointer-events-none z-0"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-[150px] pointer-events-none translate-y-1/2 -translate-x-1/4 z-0"></div>
+      <div className="absolute top-1/4 -right-20 text-[10rem] font-display font-black text-white/[0.015] uppercase pointer-events-none rotate-90 z-0">
+        UPDATES
+      </div>
+
+      <div className="max-w-[1400px] mx-auto px-6 md:px-16 relative z-10">
         
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
           <motion.div
@@ -51,9 +58,9 @@ export function News() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-              className="flex flex-col group cursor-pointer"
+              className="flex flex-col group cursor-pointer bg-[#1A1A1A]/40 backdrop-blur-md p-4 rounded-sm border border-white/5 hover:border-racing-red/30 transition-all duration-300"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-black mb-6 border border-white/5 group-hover:border-racing-red/50 transition-colors duration-500">
+              <div className="relative aspect-[16/10] overflow-hidden bg-black mb-6">
                 <img 
                   src={item.image} 
                   alt={item.title} 

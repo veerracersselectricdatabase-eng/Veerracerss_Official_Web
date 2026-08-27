@@ -21,10 +21,10 @@ export function StatsStrip() {
             return (
               <motion.div 
                 key={stat.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.5, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: index * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ type: "spring", damping: 15, stiffness: 100, delay: index * 0.1 }}
                 className="flex flex-col items-center text-center space-y-4 group cursor-default"
               >
                 <div className="relative">

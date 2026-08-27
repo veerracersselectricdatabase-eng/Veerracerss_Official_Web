@@ -11,27 +11,27 @@ export function About() {
           
           {/* Left: Image Placeholder */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative aspect-video lg:aspect-[4/3] w-full bg-[#111111] overflow-hidden rounded-sm"
+            transition={{ type: "spring", damping: 20, stiffness: 60 }}
+            className="relative aspect-video lg:aspect-[4/3] w-full bg-[#111111] overflow-hidden rounded-sm group"
           >
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1964&auto=format&fit=crop')] bg-cover bg-center opacity-80 hover:scale-105 transition-transform duration-1000 ease-out"></div>
+            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1964&auto=format&fit=crop')] bg-cover bg-center opacity-80 group-hover:scale-110 transition-transform duration-1000 ease-out"></div>
             
             {/* Minimalist Accents matching video */}
             <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-black/80 to-transparent"></div>
-            <div className="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-racing-red pointer-events-none"></div>
+            <div className="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-racing-red pointer-events-none transition-all duration-500 group-hover:w-16 group-hover:h-16 group-hover:border-white"></div>
           </motion.div>
 
           {/* Right: Text & Grid */}
           <div className="flex flex-col justify-center space-y-12">
             
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ type: "spring", damping: 25, stiffness: 80, delay: 0.2 }}
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-racing-red font-sans font-bold tracking-[0.2em] uppercase text-[11px]">ABOUT US</span>

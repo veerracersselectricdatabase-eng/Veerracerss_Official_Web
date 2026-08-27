@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}`,
       lastModified,
-      changeFrequency: 'yearly',
+      changeFrequency: 'weekly',
       priority: 1,
     },
     {
@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/cars`,
       lastModified,
       changeFrequency: 'monthly',
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/members`,
@@ -29,5 +29,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/achievements`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    }
   ];
 }

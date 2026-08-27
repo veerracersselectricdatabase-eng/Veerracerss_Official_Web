@@ -20,15 +20,15 @@ export function Hero() {
       id="home" 
       className="relative h-[100dvh] min-h-[800px] w-full flex items-center overflow-hidden bg-[#050505]"
     >
-      {/* Background Texture & Grid */}
-      <div className="absolute inset-0 telemetry-grid opacity-20 pointer-events-none z-0"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#050505]/80 to-[#050505] z-0"></div>
+      {/* Background Texture & Grid with subtle Parallax */}
+      <motion.div style={{ y }} className="absolute inset-0 telemetry-grid opacity-20 pointer-events-none z-0"></motion.div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#050505]/80 to-[#050505] z-0 pointer-events-none"></div>
       
       {/* Slanted Red Accent Element mimicking Audi Hungaria ART */}
       <motion.div 
         initial={{ x: "-100%" }}
         animate={{ x: 0 }}
-        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ type: "spring", damping: 30, stiffness: 60, duration: 1.2 }}
         className="absolute top-0 left-0 w-full md:w-[60%] h-full bg-[#111111] z-0 border-r-4 border-racing-red shadow-[20px_0_50px_rgba(210,39,48,0.1)]"
         style={{ clipPath: "polygon(0 0, 100% 0, 75% 100%, 0% 100%)" }}
       ></motion.div>
@@ -39,9 +39,9 @@ export function Hero() {
         {/* Left Side: Text Content */}
         <div className="w-full md:w-1/2 flex flex-col items-start z-20">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            transition={{ type: "spring", damping: 20, stiffness: 100, delay: 0.3 }}
             className="flex items-center gap-3 mb-6"
           >
             <span className="w-8 h-[2px] bg-racing-red"></span>
@@ -49,9 +49,9 @@ export function Hero() {
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ type: "spring", damping: 25, stiffness: 120, delay: 0.5 }}
           >
             <h1 className="font-display font-black text-5xl md:text-6xl lg:text-[85px] leading-[1.05] tracking-tight uppercase text-white drop-shadow-2xl">
               ENGINEERED <br /> TO COMPETE. <br />
@@ -60,9 +60,9 @@ export function Hero() {
           </motion.div>
 
           <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: "spring", damping: 20, stiffness: 80, delay: 0.8 }}
             className="font-sans text-white/70 text-sm md:text-base lg:text-lg mt-8 max-w-md font-light leading-relaxed border-l-2 border-white/20 pl-4"
           >
             VeerRacerss Electric, pushing boundaries in Formula Student. 
@@ -70,31 +70,33 @@ export function Hero() {
           </motion.p>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ type: "spring", damping: 20, stiffness: 100, delay: 1 }}
             className="flex flex-col sm:flex-row gap-4 mt-12 w-full sm:w-auto"
           >
-            <Link href="/cars" className="bg-racing-red text-white px-10 py-4 font-sans font-bold text-[13px] uppercase tracking-[0.2em] hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300 text-center rounded-none clip-path-slant relative overflow-hidden group">
+            <Link href="/cars" className="bg-racing-red text-white px-10 py-4 font-sans font-bold text-[13px] uppercase tracking-[0.2em] hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transition-all duration-300 text-center rounded-none clip-path-slant relative overflow-hidden group">
               <span className="relative z-10">DISCOVER THE CAR</span>
-              <div className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out z-0"></div>
+              <div className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out z-0"></div>
             </Link>
-            <Link href="/members" className="bg-transparent border border-white/30 text-white px-10 py-4 font-sans font-bold text-[13px] uppercase tracking-[0.2em] hover:border-white hover:bg-white/5 transition-all duration-300 text-center rounded-none clip-path-slant">
-              MEET THE TEAM
+            <Link href="/members" className="bg-transparent border border-white/30 text-white px-10 py-4 font-sans font-bold text-[13px] uppercase tracking-[0.2em] hover:border-white hover:bg-white/10 transition-all duration-300 text-center rounded-none clip-path-slant relative overflow-hidden group">
+              <span className="relative z-10">MEET THE TEAM</span>
+              <div className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out z-0 origin-left"></div>
             </Link>
           </motion.div>
         </div>
 
-        {/* Right Side: 3D Car Image/Placeholder */}
+        {/* Right Side: 3D Car Image/Placeholder with Parallax & Float */}
         <motion.div 
           style={{ y, opacity }}
-          initial={{ opacity: 0, scale: 0.9, x: 50 }}
+          initial={{ opacity: 0, scale: 0.8, x: 100 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ type: "spring", damping: 30, stiffness: 70, delay: 0.6 }}
           className="w-full md:w-[60%] absolute right-0 top-1/2 -translate-y-1/2 md:mt-0 z-10 pointer-events-none hidden md:block"
         >
-          {/* Use the provided media image as the car placeholder to look exactly like the high-res render vibe */}
-          <img 
+          <motion.img 
+            animate={{ y: [-10, 10, -10] }}
+            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
             src="https://images.unsplash.com/photo-1614026480209-cd9934144671?q=80&w=2070&auto=format&fit=crop" 
             alt="Formula Student Car" 
             className="w-full h-auto object-cover opacity-90 drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] [mask-image:linear-gradient(to_left,white_40%,transparent_100%)]"

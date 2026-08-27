@@ -23,8 +23,14 @@ const SPECS = [
 
 export function Cars() {
   return (
-    <section id="cars" className="py-24 md:py-32 bg-[#111111] relative z-10">
-      <div className="max-w-7xl mx-auto px-4 md:px-16">
+    <section id="cars" className="py-24 md:py-32 bg-[#111111] relative z-10 overflow-hidden">
+      {/* Background Elements to fill empty space */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] md:text-[25rem] font-display font-black text-white/[0.02] uppercase pointer-events-none whitespace-nowrap z-0">
+        AETHER
+      </div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-racing-red/10 rounded-full blur-[150px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 md:px-16 relative z-10">
         
         <div className="text-center mb-16 md:mb-24">
           <motion.div
@@ -50,7 +56,7 @@ export function Cars() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="bg-[#0A0A0A] border border-white/5 p-8 md:p-10 group hover:border-racing-red/50 transition-colors duration-500 relative overflow-hidden"
+                className="bg-[#0A0A0A] border border-white/5 p-8 md:p-10 group hover:border-racing-red/50 transition-colors duration-500 relative overflow-hidden backdrop-blur-sm"
               >
                 <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-700">
                   <Icon className="w-32 h-32 text-white" />
